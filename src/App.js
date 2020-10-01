@@ -1,4 +1,4 @@
-mport React, { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
@@ -13,7 +13,7 @@ function App() {
     setstate({ ...state, photo: event.target.value });
   }
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     const url =
