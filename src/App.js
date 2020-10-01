@@ -1,4 +1,4 @@
-mport React, { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 
@@ -13,27 +13,20 @@ function App() {
     setstate({ ...state, photo: event.target.value });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    const url =
-      "https://api.unsplash.com/search/photos?page=1&client_id=" +
-      clientId +
-      "&query=" +
-      state.photo +
-      "/";
-
-    console.log({ url });
-
-    axios.get(url).then((response) => {
-      setstate({ ...state, result: response.data.results });
-    });
+    const url = `https://api.unsplash.com/search/photos?page=1&client_id=${clientId}&query=${state.photo}/`;
+    try {
+      const res = await axios.get(url);
+      setstate({ ...state, result: red.data.results });
+    } catch (e) {
+      console.log("error ", e);
+    }
   }
 
   return (
     <div className="App">
-      {console.log("rendering")}
-      {console.log({ state })}
       <h1>Images Search</h1>
       <input
         type="text"
